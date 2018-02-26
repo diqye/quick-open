@@ -1,11 +1,11 @@
 module Main where
 import Control.Monad(forM)
 import System.FilePath.Posix((</>))
-import System.Directory as Dir
+import qualified System.Directory as Dir
 import System.Environment(getArgs)
-import System.Process as P
-import Data.List as L
-import Data.Char as C
+import qualified System.Process as P
+import qualified Data.List as L
+import qualified Data.Char as C
 
 -- 通过命令行 快速打开/切换Mac上的应用程序
 
@@ -50,6 +50,7 @@ main = do applicationPaths <- configPaths
 mainLogic :: [FilePath] -> IO ()
 mainLogic applicationPaths = do args <- getArgs
                                 case args of [] -> openApp "" applicationPaths
+                                             [(':':rest)] -> P.callCommand $ "open http://" ++ rest
                                              ["baidu"] -> P.callCommand "open https://www.baidu.com"
                                              ["baidu",word] -> P.callCommand $ "open https://www.baidu.com/s?wd=" ++ word
                                              [name] -> openApp name applicationPaths
@@ -64,4 +65,3 @@ openApp name applicationPaths = do allapp <- getAppPaths applicationPaths
 search' :: String -> [(Name,FilePath)] -> [(Name,FilePath)]
 search' name  = filter (L.isInfixOf (toLowercase name) .toLowercase  . fst)
   where toLowercase = map C.toLower
-
