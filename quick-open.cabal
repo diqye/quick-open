@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 78a90039c90fee009aa24330904a766c9c8e9462add65f97babe3d72c15f9502
+-- hash: 15f726e4f41eff35b0e0023620cc794683e8836a91994e27b8f6c5de3abea571
 
 name:           quick-open
 version:        0.1.0.0
@@ -19,7 +19,6 @@ cabal-version:  >= 1.10
 
 extra-source-files:
     ChangeLog.md
-    README.md
 
 source-repository head
   type: git

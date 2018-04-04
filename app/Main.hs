@@ -53,6 +53,8 @@ mainLogic applicationPaths = do args <- getArgs
                                              [(':':rest)] -> P.callCommand $ "open http://" ++ rest
                                              ["baidu"] -> P.callCommand "open https://www.baidu.com"
                                              ["baidu",word] -> P.callCommand $ "open https://www.baidu.com/s?wd=" ++ word
+                                             ["google"] -> P.callCommand "open https://www.google.com.hk"
+                                             ["google",word] -> P.callCommand $ "open https://www.google.com.hk/search?q=" ++ word
                                              [name] -> openApp name applicationPaths
                                              _ -> putStrLn "参数个数不对"
 openApp :: String -> [FilePath] -> IO ()
